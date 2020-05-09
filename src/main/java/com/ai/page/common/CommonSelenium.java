@@ -1,5 +1,7 @@
 package com.ai.page.common;
 
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -22,7 +24,6 @@ import java.util.concurrent.TimeUnit;
  * @date: Create in 2019/10/23 上午11:36
  * @description: selenium共用类
  */
-
 public  class CommonSelenium {
     private static org.apache.log4j.Logger log = Logger.getLogger(CommonSelenium.class);
     public static WebDriver driver;
@@ -33,7 +34,7 @@ public  class CommonSelenium {
      */
     public static void alertAccept(){
         Alert alert = driver.switchTo().alert();
-        waitingThread(1);
+        waitingThread(0.5);
         alert.accept();
         log.info("点击alert弹框接受button");
     }
@@ -43,9 +44,30 @@ public  class CommonSelenium {
      */
     public static void alertDismiss(){
         Alert alert = driver.switchTo().alert();
-        waitingThread(1);
+        waitingThread(0.5);
         alert.dismiss();
         log.info("点击alert弹框拒绝button");
+    }
+
+    /**
+     *获取alert的text
+     */
+    public static String alertGetText(){
+        Alert alert = driver.switchTo().alert();
+        waitingThread(0.5);
+        String alertText = alert.getText();
+        log.info("获取的alertText【"+alertText+"】");
+        return alertText;
+    }
+
+    /**
+     *向alert弹框中的输入框输入值
+     */
+    public static void alertSendKeys(String strs){
+        Alert alert = driver.switchTo().alert();
+        waitingThread(0.5);
+        alert.sendKeys(strs);
+        log.info("向alert弹框中的输入框输入值【"+strs+"】");
     }
 
     /**
