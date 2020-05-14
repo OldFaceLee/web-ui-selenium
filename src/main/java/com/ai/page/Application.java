@@ -6,6 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author: lixuejun
@@ -15,14 +18,16 @@ import java.net.MalformedURLException;
 public class Application extends CommonSelenium {
 
     public static void main(String[] args) {
-        SeleniumDriver.openBrowser(SeleniumDriver.Browser.CHROME);
         openURL("https://www.jdwl.com/#/");
-        String xpath = "//div[@class='modal-dialog']";
         waitingThread(5);
-        WebElement el = driver.findElement(By.xpath(xpath));
-        snapShotFullScreen("全屏截图");
-        snapShotElement(el,"具体元素截图");
-        closeBrowser();
+        String xpath = "//span[contains(text(),\"京东冷链\")]";
+        String xpath1 = "//a[@class=\"main-a\"]/span[text()=\"物流服务\"]";
+        String css = "div.nav-pc-local-link-item:nth-children(2)>a.main-a>span";
+//        WebElement wlSv = driver.findElement(By.xpath(xpath1));
+
+        List<WebElement> wlSvCss = driver.findElements(By.cssSelector(css));
+        System.out.println(wlSvCss.get(0).getText());
+//        hoverMouse(wlSvCss);
 
     }
 }

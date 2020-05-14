@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,7 +25,7 @@ import java.util.concurrent.TimeUnit;
  * @date: Create in 2019/10/23 上午11:36
  * @description: selenium共用类
  */
-public  class CommonSelenium {
+public  class CommonSelenium{
     private static org.apache.log4j.Logger log = Logger.getLogger(CommonSelenium.class);
     public static WebDriver driver;
     private static final int TIME_OUT_SENCONDS = 30;
@@ -82,6 +83,7 @@ public  class CommonSelenium {
      * 打开网址
      */
     public static void openURL(String url) {
+        log.info(driver.toString());
         driver.get(url);
         log.info("打开URL【" + url + "】");
     }
@@ -91,32 +93,26 @@ public  class CommonSelenium {
      *
      */
     public static void click(WebElement element) {
-        if(isElementDisplay(element)){
-            element.click();
-            log.info("鼠标左键点击元素" + element.toString());
-        }
+        element.click();
+        log.info("鼠标左键点击元素" + element.toString());
     }
 
     /**
      * 通过Actions(driver)点击页面元素
      */
     public static void clickByActions(WebElement element) {
-        if(isElementDisplay(element)){
-            Actions actions = new Actions(driver);
-            actions.click(element).build().perform();
-            log.info("通过Actions对象进行点击页面元素" + element.toString());
-        }
+        Actions actions = new Actions(driver);
+        actions.click(element).build().perform();
+        log.info("通过Actions对象进行点击页面元素" + element.toString());
     }
 
     /**
      * 通过javaScript方法点击元素
      */
     public static void clickByJs(WebElement element) {
-        if(isElementDisplay(element)){
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].click()", element);
-            log.info("通过js方法点击元素 " + element.toString());
-        }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click()", element);
+        log.info("通过js方法点击元素 " + element.toString());
     }
 
     /**

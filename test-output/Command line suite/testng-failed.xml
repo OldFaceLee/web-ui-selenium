@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="Failed suite [Command line suite]" parallel="methods">
+  <test thread-count="2" name="Command line test(failed)" parallel="methods">
+    <classes>
+      <class name="com.ai.page.testsuite.TestSuite">
+        <methods>
+          <include name="tc02_open"/>
+        </methods>
+      </class> <!-- com.ai.page.testsuite.TestSuite -->
+    </classes>
+  </test> <!-- Command line test(failed) -->
+</suite> <!-- Failed suite [Command line suite] -->
