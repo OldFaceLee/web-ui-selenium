@@ -474,7 +474,7 @@ public  class CommonSelenium{
      */
     public static void removeReadOnly(String tagName){
         String jQuery = "$('" + tagName + "').removeAttr('readonly');";
-        ((JavascriptExecutor) driver).executeScript(jQuery);
+        executeJS(jQuery);
 
     }
 
@@ -502,6 +502,19 @@ public  class CommonSelenium{
         String attrEle = element.getAttribute(attr);
         log.info("获取元素"+element.toString()+"属性"+attr+"的值为【"+attrEle+"】");
         return attrEle;
+    }
+
+    /*
+     *执行js代码器
+     */
+    public static void executeJS(String js){
+        ((JavascriptExecutor) driver).executeScript(js);
+        log.info("JsExecutor执行js代码【"+js+"】");
+    }
+
+    public static void executeJS(WebElement element,String js){
+        ((JavascriptExecutor) driver).executeScript(js,element);
+        log.info("JsExecutor执行js代码【"+js+"】,操作元素【"+element.toString()+"】");
     }
 
 
