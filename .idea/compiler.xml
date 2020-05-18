@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ui-auto-test" target="1.5" />
+      <module name="ui-auto-test" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
